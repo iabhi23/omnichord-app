@@ -2,7 +2,7 @@
 
 A modern, web-based digital recreation of the classic analog OM-84 Omnichord instrument, built with vanilla JavaScript, Vite, and CSS. Play chords, strum strings, and jam out directly from your browser!
 
-🌐 **Live Demo:** [omnichord-app.vercel.app)
+🌐 **Live Demo:** [https://omnichord-app.vercel.app/)
 
 ---
 

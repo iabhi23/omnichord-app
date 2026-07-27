@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Omnichord OM-84 Custom</title>
+</head>
+<body>
+
+  <div class="instrument-container">
+    <header class="branding">
+      <h1>Omnichord <span></span></h1>
+      <button id="btn-theme-toggle" class="theme-toggle-btn" title="Toggle Light/Dark Mode">🌙</button>
+      <p id="app-instructions">Select your chords to build a custom palette, or play instantly.</p>
+    </header>
+
+    <div class="omnichord-panel">
+      
+      <!-- ========================================== -->
+      <!-- VIEW 1: CONFIGURATION (Select your chords) -->
+      <!-- ========================================== -->
+      <div id="setup-view">
+        
+        <div class="action-bar">
+          <button id="btn-build" class="primary-button" disabled>Play Selected Palette</button>
+          <button id="btn-full" class="secondary-button">Play Full Omnichord Instantly</button>
+        </div>
+        
+        <section class="chord-legend">
+          <h3>Rows (Vertical): Chord Qualities</h3>
+          <p>From top to bottom, the rows change the "flavor" or quality of the root note in that column.</p>
+          <ul>
+            <li><strong>Row 1:</strong> Major</li>
+            <li><strong>Row 2:</strong> Minor (m)</li>
+            <li><strong>Row 3:</strong> Dominant 7th (7)</li>
+            <li><strong>Row 4:</strong> Major 7th (M7)</li>
+            <li><strong>Row 5:</strong> Minor 7th (m7)</li>
+            <li><strong>Row 6:</strong> Augmented (aug / +)</li>
+            <li><strong>Row 7:</strong> Diminished (dim / o)</li>
+          </ul>
+        </section>
+
+        <!-- CHORD MATRIX (OM-84 Layout: 7 Rows x 12 Columns) -->
+        <section class="chord-section">
+          <div class="chord-matrix" id="setup-matrix">
+            
+            <!-- Row 1: Major -->
+            <button class="chord-button" data-chord="Bb">Bb</button>
+            <button class="chord-button" data-chord="F">F</button>
+            <button class="chord-button" data-chord="C">C</button>
+            <button class="chord-button" data-chord="G">G</button>
+            <button class="chord-button" data-chord="D">D</button>
+            <button class="chord-button" data-chord="A">A</button>
+            <button class="chord-button" data-chord="E">E</button>
+            <button class="chord-button" data-chord="B">B</button>
+            <button class="chord-button" data-chord="F#">F#</button>
+            <button class="chord-button" data-chord="C#">C#</button>
+            <button class="chord-button" data-chord="G#">G#</button>
+            <button class="chord-button" data-chord="D#">D#</button>
+        
+            <!-- Row 2: Minor -->
+            <button class="chord-button" data-chord="Bbm">Bbm</button>
+            <button class="chord-button" data-chord="Fm">Fm</button>
+            <button class="chord-button" data-chord="Cm">Cm</button>
+            <button class="chord-button" data-chord="Gm">Gm</button>
+            <button class="chord-button" data-chord="Dm">Dm</button>
+            <button class="chord-button" data-chord="Am">Am</button>
+            <button class="chord-button" data-chord="Em">Em</button>
+            <button class="chord-button" data-chord="Bm">Bm</button>
+            <button class="chord-button" data-chord="F#m">F#m</button>
+            <button class="chord-button" data-chord="C#m">C#m</button>
+            <button class="chord-button" data-chord="G#m">G#m</button>
+            <button class="chord-button" data-chord="D#m">D#m</button>
+        
+            <!-- Row 3: 7th -->
+            <button class="chord-button" data-chord="Bb7">Bb7</button>
+            <button class="chord-button" data-chord="F7">F7</button>
+            <button class="chord-button" data-chord="C7">C7</button>
+            <button class="chord-button" data-chord="G7">G7</button>
+            <button class="chord-button" data-chord="D7">D7</button>
+            <button class="chord-button" data-chord="A7">A7</button>
+            <button class="chord-button" data-chord="E7">E7</button>
+            <button class="chord-button" data-chord="B7">B7</button>
+            <button class="chord-button" data-chord="F#7">F#7</button>
+            <button class="chord-button" data-chord="C#7">C#7</button>
+            <button class="chord-button" data-chord="G#7">G#7</button>
+            <button class="chord-button" data-chord="D#7">D#7</button>
+        
+            <!-- Row 4: Major 7th -->
+            <button class="chord-button" data-chord="BbM7">BbM7</button>
+            <button class="chord-button" data-chord="FM7">FM7</button>
+            <button class="chord-button" data-chord="CM7">CM7</button>
+            <button class="chord-button" data-chord="GM7">GM7</button>
+            <button class="chord-button" data-chord="DM7">DM7</button>
+            <button class="chord-button" data-chord="AM7">AM7</button>
+            <button class="chord-button" data-chord="EM7">EM7</button>
+            <button class="chord-button" data-chord="BM7">BM7</button>
+            <button class="chord-button" data-chord="F#M7">F#M7</button>
+            <button class="chord-button" data-chord="C#M7">C#M7</button>
+            <button class="chord-button" data-chord="G#M7">G#M7</button>
+            <button class="chord-button" data-chord="D#M7">D#M7</button>
+        
+            <!-- Row 5: Minor 7th -->
+            <button class="chord-button" data-chord="Bbm7">Bbm7</button>
+            <button class="chord-button" data-chord="Fm7">Fm7</button>
+            <button class="chord-button" data-chord="Cm7">Cm7</button>
+            <button class="chord-button" data-chord="Gm7">Gm7</button>
+            <button class="chord-button" data-chord="Dm7">Dm7</button>
+            <button class="chord-button" data-chord="Am7">Am7</button>
+            <button class="chord-button" data-chord="Em7">Em7</button>
+            <button class="chord-button" data-chord="Bm7">Bm7</button>
+            <button class="chord-button" data-chord="F#m7">F#m7</button>
+            <button class="chord-button" data-chord="C#m7">C#m7</button>
+            <button class="chord-button" data-chord="G#m7">G#m7</button>
+            <button class="chord-button" data-chord="D#m7">D#m7</button>
+        
+            <!-- Row 6: Augmented -->
+            <button class="chord-button" data-chord="Bbaug">Bb+</button>
+            <button class="chord-button" data-chord="Faug">F+</button>
+            <button class="chord-button" data-chord="Caug">C+</button>
+            <button class="chord-button" data-chord="Gaug">G+</button>
+            <button class="chord-button" data-chord="Daug">D+</button>
+            <button class="chord-button" data-chord="Aaug">A+</button>
+            <button class="chord-button" data-chord="Eaug">E+</button>
+            <button class="chord-button" data-chord="Baug">B+</button>
+            <button class="chord-button" data-chord="F#aug">F#+</button>
+            <button class="chord-button" data-chord="C#aug">C#+</button>
+            <button class="chord-button" data-chord="G#aug">G#+</button>
+            <button class="chord-button" data-chord="D#aug">D#+</button>
+        
+            <!-- Row 7: Diminished -->
+            <button class="chord-button" data-chord="Bbdim">Bbo</button>
+            <button class="chord-button" data-chord="Fdim">Fo</button>
+            <button class="chord-button" data-chord="Cdim">Co</button>
+            <button class="chord-button" data-chord="Gdim">Go</button>
+            <button class="chord-button" data-chord="Ddim">Do</button>
+            <button class="chord-button" data-chord="Adim">Ao</button>
+            <button class="chord-button" data-chord="Edim">Eo</button>
+            <button class="chord-button" data-chord="Bdim">Bo</button>
+            <button class="chord-button" data-chord="F#dim">F#o</button>
+            <button class="chord-button" data-chord="C#dim">C#o</button>
+            <button class="chord-button" data-chord="G#dim">G#o</button>
+            <button class="chord-button" data-chord="D#dim">D#o</button>
+            
+          </div>
+        </section>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- VIEW 2: PLAYING (Hidden initially)         -->
+      <!-- ========================================== -->
+      <div id="play-view" class="hidden">
+        
+        <div class="action-bar">
+          <button id="btn-edit" class="secondary-button">← Edit Palette</button>
+        </div>
+
+        <section class="chord-section">
+          <!-- Dynamically populated custom grid via JavaScript -->
+          <div class="custom-matrix" id="play-matrix"></div>
+        </section>
+
+        <!-- STRUMPLATE -->
+        <section class="strumplate-section">
+          <div class="strumplate">
+            <div class="strum-string" data-index="0"></div>
+            <div class="strum-string" data-index="1"></div>
+            <div class="strum-string" data-index="2"></div>
+            <div class="strum-string" data-index="3"></div>
+            <div class="strum-string" data-index="4"></div>
+            <div class="strum-string" data-index="5"></div>
+            <div class="strum-string" data-index="6"></div>
+            <div class="strum-string" data-index="7"></div>
+            <div class="strum-string" data-index="8"></div>
+            <div class="strum-string" data-index="9"></div>
+            <div class="strum-string" data-index="10"></div>
+            <div class="strum-string" data-index="11"></div>
+          </div>
+        </section>
+        
+      </div>
+
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

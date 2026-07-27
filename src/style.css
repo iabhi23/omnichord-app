@@ -1,0 +1,390 @@
+/* ========================================== */
+/* 1. RESET AND BASE STYLES                   */
+/* ========================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+  }
+  
+  body {
+    background-color: var(--bg-core);
+    background-image: var(--bg-gradient);
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    transition: background 0.3s ease;
+  }
+  
+  /* ========================================== */
+  /* 2. THEME SYSTEM (Dark / Light Variables)   */
+  /* ========================================== */
+  :root {
+    --bg-core: #080c10;
+    --bg-gradient: radial-gradient(circle at center, #111b27 0%, #080c10 100%);
+    --container-bg: #121820;
+    --container-grad: linear-gradient(135deg, #18222d 0%, #0d1217 100%);
+    --border-primary: #3b5270;
+    --text-main: #e0e6ed;
+    --text-muted: #88a0bc;
+    
+    --btn-primary-bg: #224269;
+    --btn-primary-text: #ffffff;
+    --btn-primary-shadow: #0e1a2b;
+    
+    --btn-secondary-bg: #1c2a38;
+    --btn-secondary-text: #b0c4de;
+    --btn-secondary-shadow: #0f161f;
+    
+    --panel-bg: #0e141b;
+    --button-bg: #16202c;
+    --button-shadow: #080d14;
+    
+    --selected-bg: #1e4a7a;
+    --selected-text: #ffffff;
+    
+    --active-bg: #1d70b8;
+    --active-text: #ffffff;
+    
+    --strum-section-bg: #070a0e;
+    --strum-plate-grad: linear-gradient(180deg, #111923 0%, #05070a 100%);
+  }
+  
+  [data-theme="light"] {
+    --bg-core: #e0e1dd;
+    --bg-gradient: radial-gradient(circle at center, #f5f6f2 0%, #cbd2dc 100%);
+    --container-bg: #ffffff;
+    --container-grad: linear-gradient(135deg, #ffffff 0%, #f0f2f5 100%);
+    --border-primary: #415a77;
+    --text-main: #0d1b2a;
+    --text-muted: #778da9;
+    
+    --btn-primary-bg: #0d1b2a;
+    --btn-primary-text: #e0e1dd;
+    --btn-primary-shadow: #415a77;
+    
+    --btn-secondary-bg: #778da9;
+    --btn-secondary-text: #0d1b2a;
+    --btn-secondary-shadow: #415a77;
+    
+    --panel-bg: #e9ecef;
+    --button-bg: #ffffff;
+    --button-shadow: #778da9;
+    
+    --selected-bg: #778da9;
+    --selected-text: #0d1b2a;
+    
+    --active-bg: #415a77;
+    --active-text: #ffffff;
+    
+    --strum-section-bg: #415a77;
+    --strum-plate-grad: linear-gradient(180deg, #778da9 0%, #415a77 100%);
+  }
+  
+  /* ========================================== */
+  /* 3. INSTRUMENT CONTAINER & BRANDING         */
+  /* ========================================== */
+  .instrument-container {
+    background: var(--container-bg);
+    background-image: var(--container-grad);
+    border-radius: 18px;
+    padding: 35px;
+    box-shadow: 
+      0 25px 50px rgba(0, 0, 0, 0.7),
+      inset 0 1px 2px rgba(255,255,255,0.08),
+      0 0 30px rgba(29, 112, 184, 0.1);
+    max-width: 1200px;
+    width: 100%;
+    border: 1px solid var(--border-primary);
+    transition: background 0.3s ease, border 0.3s ease;
+  }
+  
+  .branding {
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--text-main);
+  }
+  
+  .header-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .theme-toggle-btn {
+    position: absolute;
+    right: 0;
+    background: var(--btn-secondary-bg);
+    border: 1px solid var(--border-primary);
+    color: var(--text-main);
+    font-size: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+  }
+  
+  .theme-toggle-btn:hover {
+    transform: scale(1.1);
+  }
+  
+  .branding h1 {
+    font-size: 26px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+  }
+  
+  .branding span {
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+  
+  .branding p {
+    font-size: 13px;
+    margin-top: 6px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+  
+  /* ========================================== */
+  /* 4. PANEL LAYOUT & UI UTILITIES             */
+  /* ========================================== */
+  .omnichord-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .hidden {
+    display: none !important;
+  }
+  
+  /* ========================================== */
+  /* 5. ACTION BARS & BUTTONS                   */
+  /* ========================================== */
+  .action-bar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 5px;
+  }
+  
+  .primary-button, .secondary-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+  }
+  
+  .primary-button {
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    border: 1px solid var(--border-primary);
+    box-shadow: 0 3px 0 var(--btn-primary-shadow), 0 4px 6px rgba(0,0,0,0.2);
+  }
+  
+  .primary-button:disabled {
+    background-color: #2b3a4a;
+    border-color: #222e3b;
+    box-shadow: 0 3px 0 #18222d;
+    color: #6c7d93;
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .primary-button:not(:disabled):active {
+    transform: translateY(3px);
+    box-shadow: 0 0 0 var(--btn-primary-shadow);
+  }
+  
+  .secondary-button {
+    background-color: var(--btn-secondary-bg);
+    color: var(--text-main);
+    border: 1px solid var(--border-primary);
+    box-shadow: 0 3px 0 var(--btn-secondary-shadow), 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .secondary-button:active {
+    transform: translateY(3px);
+    box-shadow: 0 0 0 var(--btn-secondary-shadow);
+  }
+  
+  /* ========================================== */
+  /* 6. CHORD LEGEND & SECTIONS                 */
+  /* ========================================== */
+  .chord-legend, .chord-section {
+    background: var(--panel-bg);
+    padding: 18px;
+    border-radius: 10px;
+    border: 1px solid var(--border-primary);
+    color: var(--text-main);
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
+  }
+  
+  .chord-legend h3 {
+    font-size: 14px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .chord-legend p {
+    font-size: 12px;
+    margin-bottom: 10px;
+    color: var(--text-muted);
+  }
+  
+  .chord-legend ul {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 6px;
+    font-size: 11px;
+  }
+  
+  .chord-legend li strong {
+    color: var(--text-muted);
+  }
+  
+  /* ========================================== */
+  /* 7. CHORD MATRIX & BUTTONS                  */
+  /* ========================================== */
+  .chord-matrix {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 10px;
+  }
+  
+  .chord-button {
+    background: var(--button-bg);
+    border: 1px solid var(--border-primary);
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: transform 0.05s ease, background-color 0.1s ease;
+    box-shadow: 0 4px 0 var(--button-shadow), 0 5px 8px rgba(0,0,0,0.15);
+    touch-action: manipulation;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .chord-button:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 var(--button-shadow), inset 0 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  /* Selected state in setup screen */
+  .chord-button.selected-for-palette {
+    background: var(--selected-bg);
+    color: var(--selected-text);
+    border-color: var(--border-primary);
+    box-shadow: 0 4px 0 var(--button-shadow), inset 0 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  /* Active / Latched State (Glow Effect) */
+  .chord-button.active {
+    background: var(--active-bg) !important;
+    color: var(--active-text) !important;
+    border-color: #52a3ff !important;
+    box-shadow: 
+      0 2px 0 #0d3863,
+      0 0 16px rgba(29, 112, 184, 0.9) !important;
+    transform: translateY(2px) !important;
+  }
+  
+  /* Custom Play Matrix Layout */
+  .custom-matrix {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+  }
+  
+  .custom-matrix .chord-button {
+    width: 65px;
+    height: 65px;
+    font-size: 14px;
+  }
+  
+  /* ========================================== */
+  /* 8. STRUMPLATE                              */
+  /* ========================================== */
+  .strumplate-section {
+    background: var(--strum-section-bg);
+    padding: 12px;
+    border-radius: 12px;
+    border: 3px solid var(--text-muted);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5), inset 0 2px 4px rgba(0,0,0,0.8);
+  }
+  
+  .strumplate {
+    display: flex;
+    width: 100%;
+    height: 180px;
+    background: var(--strum-plate-grad);
+    border-radius: 6px;
+    overflow: hidden;
+    touch-action: none;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.9);
+  }
+  
+  .strum-string {
+    flex: 1;
+    height: 100%;
+    border-right: 1px solid rgba(255, 255, 255, 0.04);
+    background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 44%,
+      rgba(255, 255, 255, 0.06) 50%,
+      transparent 56%,
+      transparent 100%
+    );
+    transition: background-color 0.08s ease;
+  }
+  
+  .strum-string:last-child {
+    border-right: none;
+  }
+  
+  .strum-string.playing {
+    background-color: rgba(29, 112, 184, 0.45);
+    box-shadow: inset 0 0 12px rgba(29, 112, 184, 0.8);
+  }
+  
+  /* ========================================== */
+  /* 9. RESPONSIVE MEDIA QUERIES                */
+  /* ========================================== */
+  @media (max-width: 768px) {
+    .instrument-container {
+      padding: 15px;
+    }
+    .chord-matrix {
+      gap: 6px;
+    }
+    .chord-button {
+      font-size: 10px;
+    }
+    .strumplate {
+      height: 140px;
+    }
+  }
